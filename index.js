@@ -7,8 +7,8 @@ const nonce = require('nonce')();
 const querystring = require('querystring');
 const request = require('request-promise');
 
-const apiKey = process.env.SHOPIFY_API_KEY;
-const apiSecret = process.env.SHOPIFY_API_SECRET;
+const apiKey = process.env.PRIVATE_SHOPIFY_API_KEY;
+const apiSecret = process.env.PRIVATE_SHOPIFY_API_SECRET;
 const scopes = 'read_products';
 const forwardingAddress = "https://b7112555.ngrok.io";
 
