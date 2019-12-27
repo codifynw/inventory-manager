@@ -1,24 +1,15 @@
-/try to add metafield
-mutation {
-  productUpdate(input:
-    {
-      id: "gid://shopify/Product/4401758863491",
-      metafields: [
-      	{
-          namespace: "testSpace",
-          key: "test",
-          value: "testValue"
-      	}
-      ]
-    })
-  	{
-    product {
-      id
-      metafields
+// Couple Products
+gid://shopify/Product/4401758863491
+gid://shopify/Product/4408449597571
+
+// Store info
+{
+  shop {
+    name
   }
 }
 
-/ Rename Product
+ // Rename Product
 mutation {
   productUpdate(input: {id: "gid://shopify/Product/1925886804024", title: "Sweet new product - GraphQL Edition"} ) {
     product {
@@ -27,7 +18,7 @@ mutation {
   }
 }
 
-/List 5 products and their first 5 metafields
+// List 5 products and their first 5 metafields
 {
   products(first: 5) {
     edges {
@@ -57,22 +48,56 @@ mutation {
 }
 
 
-/ This added a metafield:
-mutation {
-  productUpdate(input:
-    {
-      id: "gid://shopify/Product/4401758863491",
-      metafields: [
-      	{
-        	namespace: "testSpace",
-          key: "test",
-          value: "icle"
-      	}
-      ]
-    })
-  	{
+// This added a metafield:
+mutation($input: ProductInput!) {
+  productUpdate(input: $input) {
+    product {
+      metafields(first: 100) {
+        edges {
+          node {
+            id
+            namespace
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}
+
+{
+  "input" : {
+    "id": "gid://shopify/Product/4408449597571",
+    "metafields": [
+      {
+        "namespace": "instructions",
+        "key": "wash2",
+        "value": "hand wash",
+      	"valueType": "STRING"
+      }
+    ]
+  }
+}
+
+// Create a product with a metafield
+mutation($input: ProductInput!) {
+  productCreate(input: $input) {
     product {
       id
+    }
+  }
+}
+{
+  "input": {
+    "title": "Sweet new product",
+    "productType": "Snowboard",
+    "vendor": "JadedPixel",
+    "metafields": {
+      "namespace": "supply chain",
+      "key": "manufacturer",
+      "value": "Board Corp.",
+      "valueType": "STRING"
     }
   }
 }
