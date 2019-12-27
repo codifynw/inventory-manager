@@ -1,6 +1,7 @@
 // Couple Products
 gid://shopify/Product/4401758863491
 gid://shopify/Product/4408449597571
+https://help.shopify.com/en/api/guides/metafields/admin-api-metafields
 
 // Store info
 {
