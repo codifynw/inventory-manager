@@ -1,0 +1,78 @@
+/try to add metafield
+mutation {
+  productUpdate(input:
+    {
+      id: "gid://shopify/Product/4401758863491",
+      metafields: [
+      	{
+          namespace: "testSpace",
+          key: "test",
+          value: "testValue"
+      	}
+      ]
+    })
+  	{
+    product {
+      id
+      metafields
+  }
+}
+
+/ Rename Product
+mutation {
+  productUpdate(input: {id: "gid://shopify/Product/1925886804024", title: "Sweet new product - GraphQL Edition"} ) {
+    product {
+      id
+    }
+  }
+}
+
+/List 5 products and their first 5 metafields
+{
+  products(first: 5) {
+    edges {
+      node {
+        id
+        title
+        variants(first: 5) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+        metafields(first: 5) {
+          edges {
+            node {
+              namespace
+              key
+              value
+              valueType
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/ This added a metafield:
+mutation {
+  productUpdate(input:
+    {
+      id: "gid://shopify/Product/4401758863491",
+      metafields: [
+      	{
+        	namespace: "testSpace",
+          key: "test",
+          value: "icle"
+      	}
+      ]
+    })
+  	{
+    product {
+      id
+    }
+  }
+}
