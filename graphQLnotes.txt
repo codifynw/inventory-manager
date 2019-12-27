@@ -1,4 +1,12 @@
-/try to add metafield
+// Store info
+{
+  shop {
+    name
+  }
+}
+
+
+// try to add metafield
 mutation {
   productUpdate(input:
     {
@@ -18,7 +26,7 @@ mutation {
   }
 }
 
-/ Rename Product
+ // Rename Product
 mutation {
   productUpdate(input: {id: "gid://shopify/Product/1925886804024", title: "Sweet new product - GraphQL Edition"} ) {
     product {
@@ -27,7 +35,7 @@ mutation {
   }
 }
 
-/List 5 products and their first 5 metafields
+// List 5 products and their first 5 metafields
 {
   products(first: 5) {
     edges {
@@ -57,7 +65,7 @@ mutation {
 }
 
 
-/ This added a metafield:
+// This added a metafield:
 mutation {
   productUpdate(input:
     {
@@ -66,7 +74,7 @@ mutation {
       	{
         	namespace: "testSpace",
           key: "test",
-          value: "icle"
+          value: "ing"
       	}
       ]
     })
